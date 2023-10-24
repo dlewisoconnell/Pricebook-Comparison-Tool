@@ -1,28 +1,36 @@
 import pandas as pd
+
 df1 = pd.read_excel('sheet1.xlsx')
 df2 = pd.read_excel('sheet2.xlsx')
 
-# Merge dataframes
-merged = df1.merge(df2, on=['Product Description', 'Size'], how='inner')
+# Merge dataframes based on the columns 'Description' and 'Size'
+merged = df1.merge(df2, on=['Description', 'Size'], how='inner')
 
-# Filter rows where 'Price' doesn't match
+# Filter rows where 'Description' and 'Size' match, but 'Price' doesn't match
 changed_rows = merged[merged['Price_x'] != merged['Price_y']]
 
-# Drop rows with missing values as 'Product Description'
-changed_rows = changed_rows.dropna(subset=['Product Description'])
-
-# Show only descriptions beginning with 'ORG'
-org_rows = changed_rows[changed_rows['Product Description'].str.startswith('ORG')]
-
 # Drop duplicates
-org_rows = org_rows.drop_duplicates(subset=['Product Description', 'Size'])
+unique_changed_rows = changed_rows.drop_duplicates(subset=['Description', 'Size'])
 
-# Sort alphabetically
-org_rows = org_rows.sort_values(by='Product Description')
+# Alphabetize
+unique_changed_rows = unique_changed_rows.sort_values(by=['Description'])
 
-# Select columns to output to new file
-selected_columns = org_rows[['Product Description', 'Size', 'Price_x', 'Price_y']]
+# Select which columns to output
+selected_columns = unique_changed_rows[['Description', 'Size', 'Price_x', 'Price_y']]
 
-# Output to excel file
-selected_columns.to_excel('changes.xlsx', index=False)
+# Create a Pandas Excel writer using XlsxWriter as the engine
+writer = pd.ExcelWriter('changes.xlsx', engine='xlsxwriter')
+
+# Write your DataFrame to a sheet named 'changes' and adjust the width of the first column
+selected_columns.to_excel(writer, sheet_name='changes', index=False, startrow=0)
+
+# Get the xlsxwriter workbook and worksheet objects for 'changes'
+workbook = writer.book
+worksheet = writer.sheets['changes']
+
+# Set the 'Description' column width to 40 in 'changes'
+worksheet.set_column(0, 0, 40)
+
+# Save the Pandas Excel writer using writer._save()
+writer._save()
 
