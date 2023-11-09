@@ -1,7 +1,7 @@
 import pandas as pd
 
-df1 = pd.read_excel('sheet3.xls')
-df2 = pd.read_excel('sheet4.xls')
+df1 = pd.read_excel('data/sheet3.xls')
+df2 = pd.read_excel('data/sheet4.xls')
 
 # Merge dataframes
 merged = df1.merge(df2, left_on='PLU/UPC', right_on='PLU/UPC', suffixes=('_sheet1', '_sheet2'), how='inner')
