@@ -27,7 +27,7 @@ Using Python to compare two weeks of produce prices in excel format, copying any
    pip install -r requirements.txt<br><br>
 
 5. With the virtual environment active, you can now run the project:<br>
-  python.py<br><br>
+  python python.py<br><br>
   This will create the changes.xls file and plot in the data folder, showing week to week changes and most signifigant price changes in pivot table and plot.
 
 6. When you're done working on the project, deactivate the virtual environment:<br>
