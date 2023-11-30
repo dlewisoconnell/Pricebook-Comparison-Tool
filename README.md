@@ -12,25 +12,25 @@ Using Python to compare two weeks of produce prices in excel format, copying any
 * Python
 
 # Usage
-1. Navigate to the project directory using the cd command:
-   cd (path to your project)
+1. Navigate to the project directory using the cd command:<br>
+   cd (path to your project)<br><br>
    
-2. Create a virtual environment named venv. Run the following command:
-   python -m venv venv
+2. Create a virtual environment named venv. Run the following command:<br>
+   python -m venv venv<br><br>
    
-3. Activate the virtual environment:
-  source venv/Scripts/activate  # For Windows
-  source venv/bin/activate  # For Unix/Linux
-  Once activated, your terminal prompt should change to indicate that the virtual environment is active.
+3. Activate the virtual environment:<br>
+  source venv/Scripts/activate  # For Windows<br>
+  source venv/bin/activate  # For Unix/Linux<br><br>
+  Once activated, your terminal prompt should change to indicate that the virtual environment is active.<br><br>
 
-4. Install project dependencies listed in the requirements.txt file:
-   pip install -r requirements.txt
+4. Install project dependencies listed in the requirements.txt file:<br>
+   pip install -r requirements.txt<br><br>
 
-5. With the virtual environment active, you can now run the project:
-  python.py
+5. With the virtual environment active, you can now run the project:<br>
+  python.py<br><br>
   This will create the changes.xls file and plot in the data folder, showing week to week changes and most signifigant price changes in pivot table and plot.
 
-6. When you're done working on the project, deactivate the virtual environment:
+6. When you're done working on the project, deactivate the virtual environment:<br>
    deactivate
 
 
